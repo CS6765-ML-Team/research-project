@@ -95,11 +95,13 @@ In radiology, machine learning is a powerful tool that can help physisicians wit
     \item Detection of breast mass from mammography scans using convolutional neural networks \cite{arevalo_convolutional_2015}
 \end{itemize} 
 
+
+
 \subsubsection{Dermatology}
 In dermatology diagnosis, visual inspection is still the main method for determining the severity of a skin abnormalities or lesions. 
 Machine learning emerges as an effective method for automating this process as they can learn the latent features that differentiate between benign and malignant lesions in skin melanoma. 
-As early as 1994, the research in \cite{ercal_neural_1994} applied neural network to automate the classification of malignant melanoma from benign tumors that share similar characteristics as melanoma.
-The author 
+As early as 1994, the research in \cite{ercal_neural_1994} applied neural network to automate the classification of malignant melanoma from melanoma-like benign tumors.
+The model was given the discriminant characteristics such as tumor shape and relative color, manually extracted from digital images of skin cancer.
 In \cite{esteva_dermatologist-level_2017}, a convolutional neural network was trained on 100,000 clinical images of skin cancer and achieved an accuracy similar to that of a dermatologist.
 Once these models have been trained extensively on computationally efficient hardware, they can be packaged and deployed on mobile devices to make inferences on skin lesions. 
 This can further increase the accessibility of machine learning functionalities to the wider population.
@@ -108,20 +110,28 @@ This can further increase the accessibility of machine learning functionalities 
 
 \subsubsection{Hematology}
 In the case of hematological diseases, early prediction can help prevent progression and complication of blood disorders such as leukemia and lymphoma. 
-Traditionally, practitioners diagnose hematological conditions by phenotypic assessment of peripheral blood nd bone marrow samples. 
+Traditionally, practitioners diagnose hematological conditions by phenotypic assessment of peripheral blood (PB) and bone marrow (BM) samples.
+Newer techniques for disease diagnosis includes flow cytometry and molecular genetic analyses. 
 However, diagnostic ambiguity often occurs in such manual process depending on the operator experience and capabilities. 
-The reproducibility of clinical results also varies amongst skilled hematologists and pathologists \cite{walter_artificial_2023}.
-Therefore, there is a desire for an automated process for reduced reliance on expert knowledge and increased consistency in data interpretation.
+The reproducibility of clinical results suffer from inter- and intravariations amongst skilled hematologists and pathologists \cite{walter_artificial_2023,wu_hematologist-level_2020}.
+Therefore, there needs to be an automated process for reduced reliance on expert knowledge and increased consistency in data interpretation.
 Given its predictive power, machine learning implementation in disease diagnosis from blood samples is an active research topic.
 
 In 2014, early developments of automated systems leveraging machine learning had limited capabilities, performing tasks such as blood cell counting or classificiation of lymphoid cell types \cite{alomari_automatic_2014,alferez_automatic_2014,alferez_automatic_2015}.
 In \cite{guncar_application_2018}, two ML models were developed to predict hematologic disease.
 One of them was trained on all available blood test parameters and the other trained on a reduced set of parameters usually obtained from patient admittance.
-When this input is paired with the knowledge of the five most likely diseases, the models achieve predictive performance on par with haematology specialists
+When this input is paired with the knowledge of the five most likely diseases, the models achieve predictive performance on par with haematology specialists.
+
+In a research by Wu et al. \cite{wu_hematologist-level_2020}, the researchers developed a BMSNet with the YOLO-v3 CNN architecture to assist in BM smear interpretation.
+The model performance was reported as comparable to that of expert hematologists and pathologists in various tests, except for the classification of myelodysplastic cases.
+
+Matek et al. \cite{matek_highly_2021} automated cytomorphologic examination of BM smears by training two CNN-based classifiers. 
+The first model has the ResNeXt-50 architecture, previously used in \cite{matek_human-level_2019} for recognition of acute myeloid leukemia blast cells from PB smears due to its low number of hyperparameters.
+The second model was a sequential CNN models with a simpler architecture for baseline performance comparison
 The research in \cite{cheuque_efficient_2022} employed a two-stage CNN architecture to classifies four types of white blood cells (leukocytes).
 The first layer of CNN leveraged a Faster R-CNN network to delineate the regions of interest and differentiate mononuclear cells from polymorphonuclear cells. 
 The seconds layer consists of two parallels CNN with the MobileNet architectures and transfer learning to further categorize the subclasses of leukocytes. 
-The lightweight architecture and parallelization allows for faster inferencing time.
+The lightweight architecture and parallelization in the second layer allows for faster inferencing time.
 
 
 
@@ -134,7 +144,7 @@ This condition is one of the common causes of vision loss and impairment amongst
 In 2018, the FDA approved of IDx-DR, the first AI-enabled system for detecting DR.
 The research in \cite{abramoff_improved_2016} and \cite{abramoff_pivotal_2018} leveraged a multilayer CNN to train independent detectors for the anatomy and the characteristics of DR, including microaneurysms, hemorhages, and lipoprotein exudates.
 The results of these detectors are combined to return the levels of the diseases. 
-The study in \cite{sayres_using_2019} implemented an Inception V4 model, also a CNN architecture, to detect the severity grade of DR and provide a heatmap of regions of interest 
+The study in \cite{sayres_using_2019} implemented an Inception-v4 CNN architecture, to detect the severity grade of DR and provide a heatmap of regions of interest.
 
 
 
