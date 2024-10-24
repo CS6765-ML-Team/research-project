@@ -110,30 +110,32 @@ This can further increase the accessibility of machine learning functionalities 
 
 \subsubsection{Hematology}
 In the case of hematological diseases, early prediction can help prevent progression and complication of blood disorders such as leukemia and lymphoma. 
-Traditionally, practitioners diagnose hematological conditions by phenotypic assessment of peripheral blood (PB) and bone marrow (BM) samples.
+Traditionally, practitioners diagnose hematological conditions by cytomorphologic phenotypic assessment of peripheral blood (PB) and bone marrow (BM) samples.
 Newer techniques for disease diagnosis includes flow cytometry and molecular genetic analyses. 
 However, diagnostic ambiguity often occurs in such manual process depending on the operator experience and capabilities. 
 The reproducibility of clinical results suffer from inter- and intravariations amongst skilled hematologists and pathologists \cite{walter_artificial_2023,wu_hematologist-level_2020}.
 Therefore, there needs to be an automated process for reduced reliance on expert knowledge and increased consistency in data interpretation.
 Given its predictive power, machine learning implementation in disease diagnosis from blood samples is an active research topic.
 
-In 2014, early developments of automated systems leveraging machine learning had limited capabilities, performing tasks such as blood cell counting or classificiation of lymphoid cell types \cite{alomari_automatic_2014,alferez_automatic_2014,alferez_automatic_2015}.
+In 2014, early developments of automated ML systems for cytomorphologic assessment had limited capabilities, performing tasks such as blood cell counting or classificiation of lymphoid cell types \cite{alomari_automatic_2014,alferez_automatic_2014,alferez_automatic_2015}.
 In \cite{guncar_application_2018}, two ML models were developed to predict hematologic disease.
 One of them was trained on all available blood test parameters and the other trained on a reduced set of parameters usually obtained from patient admittance.
 When this input is paired with the knowledge of the five most likely diseases, the models achieve predictive performance on par with haematology specialists.
-
 In a research by Wu et al. \cite{wu_hematologist-level_2020}, the researchers developed a BMSNet with the YOLO-v3 CNN architecture to assist in BM smear interpretation.
 The model performance was reported as comparable to that of expert hematologists and pathologists in various tests, except for the classification of myelodysplastic cases.
-
 Matek et al. \cite{matek_highly_2021} automated cytomorphologic examination of BM smears by training two CNN-based classifiers. 
 The first model has the ResNeXt-50 architecture, previously used in \cite{matek_human-level_2019} for recognition of acute myeloid leukemia blast cells from PB smears due to its low number of hyperparameters.
-The second model was a sequential CNN models with a simpler architecture for baseline performance comparison
+The second model was a sequential CNN models with a simpler architecture for baseline performance comparison.
 The research in \cite{cheuque_efficient_2022} employed a two-stage CNN architecture to classifies four types of white blood cells (leukocytes).
 The first layer of CNN leveraged a Faster R-CNN network to delineate the regions of interest and differentiate mononuclear cells from polymorphonuclear cells. 
 The seconds layer consists of two parallels CNN with the MobileNet architectures and transfer learning to further categorize the subclasses of leukocytes. 
 The lightweight architecture and parallelization in the second layer allows for faster inferencing time.
 
-
+Flow cytometry or multiparameter flow cytometry (MFC) is a modern techniques for routine blood analysis and an enabling factor for AI integration in hematology.
+Modern MPC can analyze thousands of cells a second to generate a large dataset of high dimensional data \cite{walter_artificial_2023}. 
+Although this appears challenging for human interpretation and emphasizes the reliance on expert knowledge, a machine learning algorithm can be trained to interpret the latent representation and correlation in the flow cytometry data.
+The researchers in \cite{zhao_hematologist-level_2020}, leveraged machine learning by first converting MPC data into multicolor 2D images using a self-organizing map before feeding this data representation through a CNN architecture for classification.
+The developed model was capable of categorizing healthy cells from diseased ones, as well as the seven subclasses of mature B-cell neoplasm.
 
 \subsubsection{Ophthamology}
 In the field of ophthamology, a fundoscopy is a non invasive procedure for inestigating the patient's fundus, or the back of their eyes, to diagnose vision conditions and risk factors leading to vision loss.
@@ -146,7 +148,10 @@ The research in \cite{abramoff_improved_2016} and \cite{abramoff_pivotal_2018} l
 The results of these detectors are combined to return the levels of the diseases. 
 The study in \cite{sayres_using_2019} implemented an Inception-v4 CNN architecture, to detect the severity grade of DR and provide a heatmap of regions of interest.
 
-
+Researchers have also integreated AI into the early diagnosis of age-related macular degeneration (AMD), a chronic and irreversible condition and one of the most common cause of central vision loss. 
+One characteristics that signals the onset of AMD is the appearance of hard or soft drusen on optical coherence tomography images or color fundoscopy images.
+ML can automate the drusen detection to diagnosie early signs of AMD, such as in Burlina et. al where they employed Deep CNN on color fundus images \cite{burlina_automated_2017}. The network employs transfer learning on the AlexNet structure, which includes dropout lauers, ReLU activation, and normalization. The weights was trained using stochastic gradient descent and Nesterov momentum, and a learning rate of 0.001 for 50 epochs. This model was compared to a pretrained Overfeat DCNN (New York University) with a linear SVM for classification. The results showed comparable performance to expert human graders, with accuracy ranging from 88.4\% and 91.6\% and an ROC-AUC score betwen 0.94 and 0.96.
+In the research by Antony et al. \cite{}, the authors employed a VGG16 CNN architecture to diagnose AMD from OCT scans
 
 \subsubsection{Oncology}
 The integration of AI and ML systems in cancer treatment is an active branch of research.
