@@ -1,0 +1,38 @@
+\documentclass[12pt]{article}      % document type and font size
+\usepackage[a4paper, portrait, margin=1in]{geometry}    % sets the margins to 1 in and the paper type
+\usepackage{times}            % times new roman
+\usepackage{float}            % float options
+\usepackage{caption}          % caption settings for centering
+\usepackage{array, cellspace}                               % used in the first table
+    \setlength{\cellspacetoplimit}{4pt}                     % used in the first table
+    \setlength{\cellspacebottomlimit}{4pt}                  % used in the first table
+    \usepackage[export]{adjustbox}                          % used in the first table
+    \usepackage{tabularx}                                   % used in the first table
+
+
+\begin{document}
+\noindent The following papers pertain to challenges in the adoption of ML in healthcare:
+
+\begin{table}[h!]
+    \centering
+    \vspace{2.5mm}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabularx}{\textwidth}{| >{\centering\arraybackslash}X |>{\centering\arraybackslash}X |}
+        \hline
+        Topic & Relevant Papers \\ [0.5 em]
+        \hline
+        Clinical Adaptation & 1,2, Ali (errors), Gohel (errors and reproduce, relationships) \\
+        \hline 
+        Black Box Problem & 1,2, Guan, Murdoch \\
+        \hline
+        Algorithmic Bias & 1,2, Char, Murdoch, Panch, Cohen \\
+        \hline
+        Data Privacy/Ethics & 2, Ali, Char, Gerke, Guan, Murdoch, Panch, Cohen, Racine \\
+        \hline
+        Legal Issues & Gerke, Racine  \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+
+\end{document}
