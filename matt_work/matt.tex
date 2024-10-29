@@ -2,6 +2,7 @@
 \usepackage{graphicx}
     \graphicspath{content/images/}
 \usepackage[a4paper, portrait, margin = 1in]{geometry}
+\usepackage{amsmath,amssymb}
 \usepackage{times}
 \usepackage{indentfirst}
 \usepackage[square, numbers, sort&compress]{natbib}
@@ -87,11 +88,77 @@ Price and Cohen outlined bias in action by considering the allocation of scarce 
 It is therefore important that strategies to minimize the discrimination of marginalized communities and bias stemming from disparities in datasets between races be implemented throughout the development of machine learning algorithms for use in the healthcare sector.
 
 
-A bias that was surprising to the author(s) was one that did not stem from the data itself, but rather the intent of those designing the algorithms, as highlighted by Char and Shah in \citep{Char_2018}. They highlight how the medical industry is entering into a new age of privatized development, wherein TALK ABOUT THE CHAR ARTICLE!
+A bias that was surprising to the author(s) was one that did not stem from the data itself, but rather the intent of those designing the algorithms, as highlighted by Char and Shah in \citep{Char_2018}. They highlight how the medical industry is entering into a new age of privatized development, wherein those responsible for designing ML algorithms for private sector healthcare corporations might be inclined towards malpractice to bolster their algorithm performance. There may exist temptation towards teaching machine learning systems to guide users towards clinical actions that would not necessarily lead to better care, but would lead to better quality metrics and hospital ratings. These systems might be designed in a manner that when they are being scrutinized by health regulators, they skew the data provided for public evaluation. The authors highlight Volkswagen's algorithm for passing emissions test by reducing their nitrogen oxide emissions when tested. Therefore, one must carefully consider the delivate balance between turning a profit and bolstering ratings, and providing improved healthcare for patients. Those responsible for desigining ML for use in healthcare are most likely not healthcare professionals themselves, and therefore need to seriously consider this tension.\
 
+\vspace{-5mm}
 \subsection{Data Privacy and Ethics}
 
-\subsection{Legal Issues}
+Arguably the largest concern with the use of machine learning in the healthcare field is that of data privacy and ethics. As we all know, ML algorithms require copious amounts of data to sufficiently train them to a deployable state. In the context of healthcare, there are often issues with acquiring such a large repository of data. This stems from the fact that patient records are often regarded as confidential, and as such many healthcare organizations are not yet ready to offer up this personable information \citep{Khan_2023}. The deployment of ML systems into the healthcare field has vast implications towards the privacy and confidentiality of data. As early as 1982 some researchers within the medical field were describing the once Hippocratic cornerstone of medicine, confidentiality, as a decrepit and dated concept \citep{Siegler_1982}, an opinion that might be more relevant now than ever.\
+
+Char and Shah highlight how the implementation of ML as a decision making support tool into the healthcare field will make confidentiality an increasingly difficult concept to maintain, as patients whose data are not recorded cannot benefit from machine learning analyses \citep{Char_2018}, and the training of ML models will require as much data as possible to ensure clinical accuracy. There also lies the issue in conglomerating health records from all over into one central location, as health records are important and vulnerable data that might be targeted by hackers. There must exist sufficient security measures to prevent data breaches and protect this vulnerable, confidential information \citep{Khan_2023,Ali_2023}. To protect against these kinds of breaches, under the Health Insurance Portability and Accountability Act (HIPAA) patient information is modified by removing a set of 18 specified identifiers, such as names and emails \citep{Price_2019}. Murdoch states in \citep{Murdoch_2021} however that several emerging computational strategies can be used to re-identify individuals in health data breaches, even if the information has been anonymized and scrubbed of identifiers, with success rates as high as 86\% \citep{Murdoch_2021,Check_Hayden_2013,Gymrek_2013,Erlich_2018,Ji_2019}.  \
+
+% talk about consent (khan, gerke, guan, murdoch, etc.):
+
+But what if a patient does not want their data to be used to train a ML model? Patient consent therefore becomes a glaring issue, with problems related to informed consent \citep{Gerke_2020,Guan_2019}, consent to data collection \citep{Gerke_2020,Ali_2023,Murdoch_2021}, privacy and consent \citep{Murdoch_2021}, and the extent of consent \citep{Racine_2019,Price_2019} being topics of debate. Informed consent in the context of data management refers to a persons right to know where and how their data is being used, as well as what kinds of data is being used. In terms of data collection, a patient should have consent as to whether or not their information can be used in the training of an ML model. In most recent years, Google has gotten into trouble with their predatory data collection tactics regarding healthcare data being harvested from patients unknowingly.\
+
+In 2017 Google's DeepMind partnered with the British NHS Foundation to use machine learning as an assistive tool in the management of acute kidney injury. What users of this app did not know, however, was that their data was inappropriately being annexed from the United Kingdom to the United states, and this private data was collected without the consent or agency of the user \citep{Gerke_2020,Murdoch_2021}. As Murdoch states in \citep{Murdoch_2021}, corporations may not always be encouraged to maintain privacy protection if they can monetize the data or otherwise gain from it, provided that the legal penalties are not high enough to offset this behaviour. In a 2018 survey of four thousand American adults, it was found that only 11\% were willing to share their health data with tech companies, compared to 72\% with physicians. Similarly, only 31\% were either "somewhat confident" or "confident" in the abilities of tech companies to safeguard their data \citep{Murdoch_2021}.\
+
+Furthmore, there are concerns about the extent of data collection, and where the line is drawn. Racine et al. highlight that the amount and intrusiveness of health data collection may grow over time as more and more healthcare facilities implement these technologies, highlighting how the development of AI will be used to justify extensive digitization of health status, healthcare practices, treatment use, and even the data collected from wearable devices \citep{Racine_2019}. It is therefore important to consider consent as a dynamic concept, where a patient can track the use of their data and reaffirm their consent if they still wish to. Giving a patient the ability to monitor the evolution of their data as a function of time will allow the patient to have more control over their data, and help to build a trusting relationship between the patient and the healthcare practitioner or ML engineer responsible for the algorithm using their data. Finally, another issue pertaining to consent is whether or not patients should have a role in deciding how their data should be used \citep{Price_2019}, specifically should they be able to decide what gets used from their dataset, and if so, how should it be used?
+
+% I have talked about patient confidentiality, now I need to talk about the collection of data and the consent behind harvesting data and using public records. could talk about the NHS scandal with google deepmind, as well other such resources that talk about the scandals behind data collection.
+
+% the ordering should be confidentiality -> data collection -> consent about data use and when can you opt out -> other topics
+
+% can also maybe blend the legality side into this section. 
+
+
+\section{\hspace{-3mm} 0  Case Study: Bias in ML}
+
+In a paper titled \textit{Why Is My Classifier Discriminatory?}, Chen et al. examined the concept of fairness in the context of data, and sought to reduce discriminatory classification by not simply constraining the models used, but rather through augmenting the data collection methodologies used \citep{Chen_2018}. Their paper dealt with automatic decision support systems, like those discussed within this survey. They state that it is often hoped that there will be reduced bias and improved accuracy by training models on observational data, but this is not always the case. Other factors such as data quality and the choice of model however may encode unintentional discrimination, which has a systemically disparate impact \citep{Chen_2018}.\
+
+The authors evaluted fairness with respect to protected groups of individuals defined by attributes such as gender and ethnicity, and this paper sought to address the impact of data collection and processign on discrimination and fairness, as this concept was less discussed within the literature compared to constraining the model itself. They describe discrimination in terms of differences in prediciton across all protected groups. In terms of automatic decision support systems, it can often be difficult to balance the tradeoff between predictive accuracy and fairness, as the predictions influence high-states decisions when used in areas such as the healthcare industry \citep{Chen_2018}.\
+
+A model was defined as fair if its errors were distributed similarly accross all protected groups, as measured by the cost function $\gamma$. Discrimination was defined as referring to specific kinds of differences in the predictive power of models when applied to these different protected groups. Without diving too deep into the mathematical formulation of their predictive methodology, they based their predictions on a set of covariates:
+
+\begin{center}
+    $X \in \chi \subseteq \rm I\!R^k$
+\end{center}
+
+\noindent and a \textit{protected attribute}:
+
+\begin{center}
+    $A \in \mathcal{A}$
+\end{center}
+
+Where $X$ represents the medical history of a patient in critical care, $A$ is the self-reported ethnicity, and $Y$ is mortality. Predictions learned from a training set \textit{d} are denoted as:
+
+\begin{center}
+    $\hat{Y}_d := h(X,A)$
+\end{center}
+
+Fairness was quantified using a popular cost-based definition known as the equalized odds criterion, which states that a binary classifier \textit{$\hat{Y}$} is fair if its false negative rates (FNR) and false positive rates (FPR) are equal across all groups. FPR and FNR were defined for a member of a protected group $a \in \mathcal{A}$ as:
+
+\begin{center}
+    $\text{FPR}_a(\hat{Y}) := \mathbb{E}_X[\hat{Y} \mid Y = 0, A = a], \quad \text{FNR}_a(\hat{Y}) := \mathbb{E}_X[1 - \hat{Y} \mid Y = 1, A = a]$
+\end{center}
+
+\newpage
+
+\noindent The cost function $\gamma$ was defined as:
+
+\begin{center}
+    $\gamma_a \in \{\text{FPR}_a, \text{FNR}_a, \text{ZO}_a\}$
+\end{center}
+
+Where $\text{ZO}_a$ is the \textit{zero-one loss}, which is a measure of how many mistakes a hypothesis function $h$ makes on the training set, and is given by:
+
+\begin{center}
+    $\text{ZO}_a(Y) := \mathbb{E}_X[ \mathbf{1}(Y \neq \hat{Y}) \mid A = a]$
+\end{center}
+
+They utilized the MIMIC-III dataset, which is a collection of all clinical notes from 25,879 adult patients from the Beth Israel Deaconess Center, and used this dataset to predict hospital mortality of patients in critical care. Fairness was studied with respect to five self-reported ethnic groups, namely Asian (2.2\%), Black (8.8\%), Hispanic (3.4\%), White (70.8\%), and Other (14.8\%). From the dataset, notes collected in the first 48 hours of an intensive care unit (ICU) stay were used, and patients that stayed for longer than 48 hours were considered. Features were identified by utilizing the tf-idf statistics of the 10,000 most used words from the notes, which assigned a weight to each word based on its frequency relative to the entire document. Their model was trained using 50\% of the datam with hyper-parameters selected on 25\%, and tested on 25\%. The model that they used was a logistic regression model with L1-regularization, and they found that it achieved an AUC of 0.81.\ 
+
+Their findings were that Other and Hispanic groups had the highest and lowest generalized zero-one loss, respectively. The largest ethnic group (White) did not have the best accuracy, whereas the smaller ethnic groups tended towards the extremes. Despite having similar base-rates, Black and Hispanic error rates differed drastically. By increasing the training data size by subsampling and splitting the data, holding out at least 20\% for testing, they found that differences in loss decreased with additional training data. Following this, they used clustering to identify clusters where the difference in prediction errors between protected groups was large. This revealed subpopulations for which the differences in zero-one loss were high, which allowed for a more targeted method to reducing discimination. Their work highlights that manipulation of data can be sufficient to improve fairness while maintaining predictive accuracy \citep{Chen_2018}
 
 \newpage
 \bibliographystyle{ieeetr}
