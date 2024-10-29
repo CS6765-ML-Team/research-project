@@ -2,6 +2,7 @@
 \usepackage{graphicx}
     \graphicspath{content/images/}
 \usepackage[a4paper, portrait, margin = 1in]{geometry}
+\usepackage{amsmath,amssymb}
 \usepackage{times}
 \usepackage{indentfirst}
 \usepackage[square, numbers, sort&compress]{natbib}
@@ -112,6 +113,52 @@ Furthmore, there are concerns about the extent of data collection, and where the
 
 
 \section{\hspace{-3mm} 0  Case Study: Bias in ML}
+
+In a paper titled \textit{Why Is My Classifier Discriminatory?}, Chen et al. examined the concept of fairness in the context of data, and sought to reduce discriminatory classification by not simply constraining the models used, but rather through augmenting the data collection methodologies used \citep{Chen_2018}. Their paper dealt with automatic decision support systems, like those discussed within this survey. They state that it is often hoped that there will be reduced bias and improved accuracy by training models on observational data, but this is not always the case. Other factors such as data quality and the choice of model however may encode unintentional discrimination, which has a systemically disparate impact \citep{Chen_2018}.\
+
+The authors evaluted fairness with respect to protected groups of individuals defined by attributes such as gender and ethnicity, and this paper sought to address the impact of data collection and processign on discrimination and fairness, as this concept was less discussed within the literature compared to constraining the model itself. They describe discrimination in terms of differences in prediciton across all protected groups. In terms of automatic decision support systems, it can often be difficult to balance the tradeoff between predictive accuracy and fairness, as the predictions influence high-states decisions when used in areas such as the healthcare industry \citep{Chen_2018}.\
+
+A model was defined as fair if its errors were distributed similarly accross all protected groups, as measured by the cost function $\gamma$. Discrimination was defined as referring to specific kinds of differences in the predictive power of models when applied to these different protected groups. Without diving too deep into the mathematical formulation of their predictive methodology, they based their predictions on a set of covariates:
+
+\begin{center}
+    $X \in \chi \subseteq \rm I\!R^k$
+\end{center}
+
+\noindent and a \textit{protected attribute}:
+
+\begin{center}
+    $A \in \mathcal{A}$
+\end{center}
+
+Where $X$ represents the medical history of a patient in critical care, $A$ is the self-reported ethnicity, and $Y$ is mortality. Predictions learned from a training set \textit{d} are denoted as:
+
+\begin{center}
+    $\hat{Y}_d := h(X,A)$
+\end{center}
+
+Fairness was quantified using a popular cost-based definition known as the equalized odds criterion, which states that a binary classifier \textit{$\hat{Y}$} is fair if its false negative rates (FNR) and false positive rates (FPR) are equal across all groups. FPR and FNR were defined for a member of a protected group $a \in \mathcal{A}$ as:
+
+\begin{center}
+    $\text{FPR}_a(\hat{Y}) := \mathbb{E}_X[\hat{Y} \mid Y = 0, A = a], \quad \text{FNR}_a(\hat{Y}) := \mathbb{E}_X[1 - \hat{Y} \mid Y = 1, A = a]$
+\end{center}
+
+\newpage
+
+\noindent The cost function $\gamma$ was defined as:
+
+\begin{center}
+    $\gamma_a \in \{\text{FPR}_a, \text{FNR}_a, \text{ZO}_a\}$
+\end{center}
+
+Where $\text{ZO}_a$ is the \textit{zero-one loss}, which is a measure of how many mistakes a hypothesis function $h$ makes on the training set, and is given by:
+
+\begin{center}
+    $\text{ZO}_a(Y) := \mathbb{E}_X[ \mathbf{1}(Y \neq \hat{Y}) \mid A = a]$
+\end{center}
+
+They utilized the MIMIC-III dataset, which is a collection of all clinical notes from 25,879 adult patients from the Beth Israel Deaconess Center, and used this dataset to predict hospital mortality of patients in critical care. Fairness was studied with respect to five self-reported ethnic groups, namely Asian (2.2\%), Black (8.8\%), Hispanic (3.4\%), White (70.8\%), and Other (14.8\%). From the dataset, notes collected in the first 48 hours of an intensive care unit (ICU) stay were used, and patients that stayed for longer than 48 hours were considered. Features were identified by utilizing the tf-idf statistics of the 10,000 most used words from the notes, which assigned a weight to each word based on its frequency relative to the entire document. Their model was trained using 50\% of the datam with hyper-parameters selected on 25\%, and tested on 25\%. The model that they used was a logistic regression model with L1-regularization, and they found that it achieved an AUC of 0.81.\ 
+
+Their findings were that Other and Hispanic groups had the highest and lowest generalized zero-one loss, respectively. The largest ethnic group (White) did not have the best accuracy, whereas the smaller ethnic groups tended towards the extremes. Despite having similar base-rates, Black and Hispanic error rates differed drastically. By increasing the training data size by subsampling and splitting the data, holding out at least 20\% for testing, they found that differences in loss decreased with additional training data. Following this, they used clustering to identify clusters where the difference in prediction errors between protected groups was large. This revealed subpopulations for which the differences in zero-one loss were high, which allowed for a more targeted method to reducing discimination. Their work highlights that manipulation of data can be sufficient to improve fairness while maintaining predictive accuracy \citep{Chen_2018}
 
 \newpage
 \bibliographystyle{ieeetr}
