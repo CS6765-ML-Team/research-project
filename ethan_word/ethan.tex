@@ -1,3 +1,6 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
 \begin{document}
 
 \section{History of Machine Learning in Medicine}
@@ -39,5 +42,49 @@ In a medical diagnosis, it is up to the diagnostician to use the patient's sympt
 Bayesian classification is a probabilistic approach to inference that uses Bayes' theorem to calculate how likely a given hypothesis is. This naturally maps to the world of medical diagnosis, as given a list of patient symptoms, a Bayesian model assigns probabilities to each potential diagnosis, similar to a physician. Although the transparency, or ability to explain its reasoning through its representation, of Bayesian classification was a cause for concern early on, it was found that using Bayesian classifiers far outperformed other AI algorithms in medical diagnostic tests~\cite{kononenko_machine_2001}. With improvements to the issue of transparency addressed in the 1990's~\cite{kononenko_machine_2001}, Bayesian classification became a commonly used approach in the realm of AI medical diagnosis systems.  
 
 \newpage
+
+\section{Machine Learning for Antimicrobial Resistance Predictions}
+
+Antimicrobial resistance (AMR) occurs when microbes dangerous to humans and other living creatures evolve and develop resistances to the drugs that are used to combat these microbes. According to the World Health Organization (WHO), AMR and drug-resistant infections are a major threat to global health, with AMR-related deaths projected to reach roughly 10 million by 2050~\cite{balkhy_amr_2021}. As such, AMR is an active area of research as the global health community works to predict, identify, and prevent AMR cases around the world. Innovations in the fields of artificial intelligence (AI) and machine learning (ML) have allowed for their application in the fight against AMR as prediction and decision support systems. This section is a case study on how AI and ML is successfully being applied in the AMR medical field and the results it is yielding.
+
+\subsection{Application of ML in AMR Prediction}
+
+An important step in tackling AMR and drug-resistant infections is identifying resistant pathogens before they have the ability to cause harm. As such, ML is being applied in the classification and identification of potential drug-resistant pathogens through the analysis of their gene contents. The gene contents of available pathogen genomes can be used to predict resistances of those pathogens to various different antibiotics~\cite{kim_machine_2022}. Classification is a common problem solved by AI and ML, hence its usefulness in this area. Training of these predictive models that will be tasked with classifying potentially drug-resistant genomes is accomplished through supervised learning, where genomes that are already labeled as drug-resistant or non-drug-resistant are used to train and test the accuracy of the model. In the context of AMR, there is already an abundance of identified drug-resistant and non-drug-resistant pathogen genomes, as such these pre-labeled genomes are used for training~\cite{kim_machine_2022}.
+
+As with all applications of ML, it is critical that the trained model generalizes well to data it has not seen before. In the context of AMR predictions, this can be a challenge due to several factors surrounding the genomic data sets. First of all, the location, time, and habitat from which samples are taken matters greatly as samples with similar factors can produce large sets of similar genomes, causing a confounding effect in the ML model~\cite{kim_machine_2022}. In addition to this, it is common for genetic data sets to posses an uneven distribution of AMR phenotypes~\cite{kim_machine_2022}, leading to a model incorrectly classifying the majority of examples as the AMR phenotype of majority. Finally, a major difficulty affecting ML model generalization is the potential for poor or contaminated genome assemblies~\cite{kim_machine_2022}. Contaminated data may introduce false positives into the classification process, incorrectly training the model, and resulting in a model that generalizes poorly with non-contaminated data. Given the above reasons, researchers in the field of AMR believe that no single, universal AMR ML model can generalize perfectly and predict drug-resistance in any given pathogen. As such, ML in AMR prediction is being applied in much more specific cases where prediction models are looking to classify genomic data from specific environments or sample cultures as to reduce the confounding effects discussed above~\cite{kim_machine_2022}. I believe that this idea extends past AMR prediction and into the general methodology seen in ML training. Modeling a subset of a given problem is not only easier and far more reasonable, but it can also yield far higher accuracy and potentially provide more utility than a universal solution.
+
+\subsection{ML Algorithms Employed in AMR Prediction}
+
+As was discussed above, AMR prediction is a classification problem in the context of ML. There exists a plethora of classification algorithms commonly used in ML, and many of these have seen application in AMR prediction studies. Gerontini et al~\cite{gerontini_predictions_2011} developed a system to early detect special cases of antibiotic resistance occurring in hospitals through the the use of the Naive Bayes classifier, Support Vector Machines (SVMs), and the C4.5 classification algorithm. This study, which looked to not only solve an AMR related issue but also compare ML classifiers, found that SVMs achieved the best results when compared to the other algorithms according to each test's F-score~\cite{gerontini_predictions_2011}, however this is only in the context of the problem being solved. Sousa et al.~\cite{sousa_validation_2019} employed a decision tree (DT) algorithm to predict a patient's likelihood of infection with a $\beta$-lactamase, an enzyme which renders certain antibiotics inefective, producing organisms. DTs are a very popular classification algorithm employed in the field of AMR prediction, with Goodman et al.~\cite{goodman_predicting_2019} also using DTs to predict the probability of carbapenem-resistant organisms colonization. Y. Kherabi et al.~\cite{kherabi_machine_2024} performed a review of 36 AMR studies where ML models were being applied and found that 42\% of those studies used DTs and 36\% used a derivative of DTs, Random Forests (RF).  
+
+An important factor that impacts the ML classification algorithm chosen is its transparency. As with all ML applications in the field of medicine, ML algorithms applied in the field of AMR must be able to explain their reasoning behind a prediction. Physicians and researchers will not blindly trust the judgment of a model, especially when human health is involved, as such the model's results must be interpretable. Kim et al.~\cite{kim_machine_2022} defines three aspects of interpretability relevant to AMR predictions: ability to evaluate individual input features, traceability, and the ability to assess the interactions of features. The reason why DTs are so popular within this field is due to the fact that they satisfy the above three aspects of interpretability. DTs can rank the important of training features by identifying features that reduce variance~\cite{kim_machine_2022}, and the hierarchical structure of DTs naturally allows for a model's decision path to be traced through each node of the tree. As a result, DTs provide an intuitive explanation to the classification process, making them an excellent algorithm of choice for AMR predictions. 
+
+\subsection{Implications of ML in AMR Prediction}
+
+The threat presented by AMR and drug-resistant infections is a cause for global concern. The advent of AI's application in this fight is a sign of hope; however, this area of research is still in its infancy. The application of AI and ML in clinical decision making causes much ethical concern. When it comes to human life, how can a model be trusted? Although this concern may not be fully understood, it is certainly being respected. In the context of AMR research, ML is being used as a tool to assist in the surveillance and diagnosis of potentially drug-resistant microbes. This often excludes these models from making decisions directly involving patients, and is more of a tool to be used by researchers that will eventually benefit patients down the pipeline. I believe that this is an effective application of ML in the field of medicine as it does not place the responsibility of human life on a ML model, but instead provides an additional tool for experts in the field. In my opinion, in its current form, AI and ML should be used as a tool by the expert, it should not replace the expert. 
+
+\newpage
+\bibliographystyle{abbrv}
+\bibliography{main}
+
+
+Key points we want to touch on:
+\begin{enumerate}
+    \item Examples of machine learning already being applied in the health sector.
+    \item How are these machine learning examples being applied?
+    \begin{enumerate}
+        \item What architectures?
+        \item What training techniques?
+        \item What technologies?
+        \item How are they getting their data? Is it a privacy risk?
+    \end{enumerate}
+    \item What are the implications of using machine learning in such an important sector?
+    \begin{enumerate}
+        \item Legal?
+        \item Ethical?
+        \item Medical?
+    \end{enumerate}
+    \item Opinion piece?
+\end{enumerate}
 
 \end{document}
