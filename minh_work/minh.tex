@@ -152,7 +152,8 @@ Researchers have also integrated AI into the early diagnosis of \textbf{age-rela
 One characteristics that signals the onset of AMD is the appearance of hard or soft drusen on optical coherence tomography (OCT) images or color fundoscopy images.
 ML can automate the drusen detection to diagnosie early signs of AMD, such as in \textit{Burlina et. al} \cite{burlina_automated_2017} where they employed Deep CNN on color fundus images. The network employs transfer learning on the AlexNet structure, which includes dropout lauers, ReLU activation, and normalization. The weights was trained using stochastic gradient descent and Nesterov momentum, and a learning rate of 0.001 for 50 epochs. This model was compared to a pretrained Overfeat DCNN (New York University) with a linear SVM for classification. The results showed comparable performance to expert human graders, with accuracy ranging from 88.4\% and 91.6\% and an ROC-AUC score betwen 0.94 and 0.96.
 In the research done by \textit{Schlegel et al.} \cite{schlegl_fully_2018}, the authors adopted an autoencoder architecture and CNN for learning a simplified representation of the raw images (\autoref{fig:Schlegl_OCT_autoencoder} shows the architecture of this network). The encoder portion of this networks generates an optimized abstract representation of the data embedding, which is then used to re-generate a corresponding image with class labels.
-\begin{figure*}[htbp]
+
+\begin{figure*}[h]
     \centering{\includegraphics[scale=1.0]{../Resources/Schlegl_OCT_autoencoder.jpg}}
     \caption{The proposed network with an autoencoder architecture using CNN in the encoder portion to form a simplified representation of the input features} 
     \label{fig:Schlegl_OCT_autoencoder}
@@ -166,10 +167,11 @@ In a recent study by \textit{Thompson et al.} \cite{thompson_assessment_2020}, t
 \subsubsection{Oncology}
 The integration of AI and ML systems in cancer treatment is an active branch of research.
 Some potential use cases of AI in this field of research are radiotherapy dosage optimization and image segmentation for tissue abnormality detection. AI algorithms have shown promising improvements compared to manual planning in these fields \cite{thompson_artificial_2018}.
-In rafiation treament, the prescribed dose is determined by specialist prior to initial treatment. However, the variations in tumour biology poses challenges to this process as the dosage can significantly vary. Further complication may arise depending on the location of the tumour and surrounding organs, thus preventing the desired doseage delivery \cite{huynh_artificial_2020}. In this sense, AI methods can personalize the treatment plan and the optimal prescription achievable depending on the contour of the tumour and organs.
-In \textit{Nguyen et al.} \cite{}, the authors leverage the modified U-net CNN network (\autoref{fig:U-Net_architecture_cancer_dose}) to achieve contour-to-dose mapping. Different 
+In radiation treament, the prescribed dose is determined by specialist prior to initial treatment. This knowledge base planning approach depends on dose histograms and historical patient plans. However, the variations in tumour biology poses challenges to this process as the dosage can significantly vary. Further complication may arise depending on the location of the tumour and surrounding organs, thus preventing the desired doseage delivery \cite{huynh_artificial_2020}. In this sense, AI methods can personalize the treatment plan and the optimal prescription achievable depending on the contour of the tumour and organs.
 
-\begin{figure*}[htbp]
+In \textit{Nguyen et al.} \cite{nguyen_feasibility_2019}, the authors leveraged the modified U-net CNN network (\autoref{fig:U-Net_architecture_cancer_dose}) to achieve contour-to-dose mapping. The U-Net architecture was first introduced in \cite{ronneberger_u-net_2015} for image segmentation task. In a U-Net, the compressed representation of image data that was learned in the \textit{contracting path} undergoes up sampling and up-convolutions in the \textit{expansive path}. The features in the expansive path are combined with high-resolution feature from the contracting path to create the segmented representation.
+
+\begin{figure*}[h]
     \centering{\includegraphics[scale=0.3]{../Resources/U-Net CNN Architecture.png}}
     \caption{Modified U-Net architecture for personalized prostate cancer dosage prescription based on patient anatomy}
     \label{fig:U-Net_architecture_cancer_dose}
@@ -198,37 +200,40 @@ Furthermore, a more fundamental problem is the amount of health related data not
 Originally enacted to regulate data privacy in health records and between covered entities, HIPAA does not account for health data generate outside the confinement of these covered entities. 
 In the big data world, tech companies are displacing covered entities in the collection of health information and personal data from online searches, application logs, and smart wearable devices.
 
-\section{Conclusion}
+\section{Case Study: From Turing Award to Nobel Prizes}
+Artificial intelligence (AI) and machine learning (ML), two transformative forces within computer science, are undeniably making rippling effects into other traditional technological fields. The prestigious 2018 Turing Award honored Geoffery Hinton, a trailblazer in artificial neural network, for his earlier pioneering work that paved the way for recent AI developments. This landmark achievement highlighted the fundamental role of AI in advancing computer science and unravelling the complexities of natural systems-a contribution that recently earned Hinton the 2024 Nobel Prize in Physics. Shortly after Hinton's recognition, Demis Hassabis and John Jumper, two Google DeepMind executives, received the Nobel Prize in Chemistry for their pioneering contributions to decoding microscopic protein structures in the AlphaFold project.
+Using advanced AI-driven approaches, they created solutions capable of predicting protein folding—a pivotal biological challenge as a protein’s structure directly determines its function within cells and organisms. This AI breakthrough has fundamentally transformed biochemistry, enabling rapid drug discovery, personalized medicine, and a deeper understanding of cellular mechanisms.
 
-\section{Template notes}
+\subsection{History of AlphaFold Development}
 
-\subsection{Author names}
+The first version of AlphaFold \cite{senior_improved_2020} made its debut at the 13th Critical Assessment of protein Structure Prediction (CASP13), a global competition that evaluates the latest methods for predicting protein structure. This task is known for its complexity due to the vast number of potential ways protein chains can fold. AlphaFold introduced an innovative approach that combined deep neural networks with reinforcement learning to predict the 3D structure of proteins with higher accuracy than previous methods. The algorithm uses a multiple sequenece alignment technique (MSA) to process protein sequence data and related evolutionary data to understand amino acid relationship. This techniques provides information about conserved amino acids accross similar proteins and offers clues of possible protein folding structure. AlphaFold’s CNN architecture analyzed these features, learning patterns in amino acid interactions and generating predictions on the likely contacts between amino acid pairs. After initial training, AlphaFold employed reinforcement learning techniques to refine predictions iteratively, adjusting the protein’s structure until it reached a stable conformation. By rewarding predictions that brought the structure closer to plausible physical conformations, AlphaFold improved the reliability of its results over successive iterations.
 
-Each author name must be followed by:
-\begin{itemize}
-    \item A newline {\tt \textbackslash{}\textbackslash{}} command for the last author.
-    \item An {\tt \textbackslash{}And} command for the second to last author.
-    \item An {\tt \textbackslash{}and} command for the other authors.
-\end{itemize}
+AlphaFold 2 was a major leap forward and was presented at CASP14 in 2020. This version used a new architecture that relied heavily on attention mechanisms, allowing it to focus on relationships between amino acids and to understand how they influence a protein’s folding process \cite{jumper_highly_2021}. The approach resembled “transformer” models commonly used in natural language processing, which helped AlphaFold 2 capture intricate dependencies within protein \autoref{fig:AlphaFold2}. The two main attention pathways - pairwise interation representation and evoformer block - were introduced to help the model analyzed these long-range dependencies. The first attention architecture provides understanding on amino acids interaction within the folded structure, while the second pathway is a series of transformer layers that compbine both sequence information and the pairwise interaction data to build a cohesive representation of the protein's 3D structure. The algorithm further refines its prediction iteratively given the physical constraints and previous predictions and produce progressively more accurate predictions. The AlphaFold 2 algorithm achieve to an average accuracy comparable to experimental methods for many proteins.
 
-\subsection{Affiliations}
+\begin{figure*}[h]
+    \centering{\includegraphics[scale=0.6]{../Resources/AlphaFold 2.png}}
+    \caption{Architecture of AlphaFold 2} 
+    \label{fig:AlphaFold2}
+\end{figure*}
 
-After all authors, start the affiliations section by using the {\tt \textbackslash{}affiliations} command.
-Each affiliation must be terminated by a newline {\tt \textbackslash{}\textbackslash{}} command. Make sure that you include the newline on the last affiliation too.
 
-\subsection{Mapping authors to affiliations}
+As many biological functions are carried out by protein complexes, DeepMind introduced AlphaFold-Multimer v2.3, an extension designed to predict the structure of protein complexes (multimers) rather than individual proteins. This version builds on AlphaFold 2’s framework, adapting it to better handle interactions between multiple protein chains, which are crucial in many biological processes.
 
-If some scenarios, the affiliation of each author is clear without any further indication (\emph{e.g.}, all authors share the same affiliation, all authors have a single and different affiliation). In these situations you don't need to do anything special.
+Compared to AlphaFold 2 and AlphaFold Multimer, which can model protein monomers and protein complexes, AlphaFold 3 was capable of modeling the interaction amongst a wider range of biomolecules such as ligands, nucleic acids, and modified residues \cite{abramson_accurate_2024}. AlphaFold 3 introduced a  2 new modules: 1) the pairformer module to reduce the complexity of MSA processsing, and 2) the diffusion module to directly predict atom coordinates by gradually improving local structures without the sterochemical constraints required in the AlphaFold 2 approach (). In AlphaFold 3. 
+The pairformer block replaces the evoformer and the algorithm only operates on the pair representation and the single representation.
 
-In more complex scenarios you will have to clearly indicate the affiliation(s) for each author. This is done by using numeric math superscripts {\tt \$\{\^{}$i,j, \ldots$\}\$}. You must use numbers, not symbols, because those are reserved for footnotes in this section (should you need them). Check the authors definition in this example for reference.
+\begin{figure*}[h]
+    \centering{\includegraphics[scale=0.7]{../Resources/AlphaFold_3.png}}
+    \caption{AlphaFold 3 architectures} 
+    \label{fig:AlphaFold3_Architecture}
+\end{figure*}
 
-\subsection{Emails}
+\subsection{Implications}
+As can be seen from this case study, the implementaion of AI and ML in healthcare is a promising research direction. The implications of AlphaFold 3 and similar rapid advances in AI for modern medicine are profound, as they signal a new era of data-driven, precise, and personalized healthcare solutions. As AlphaFold 3 is capable of predicting thei nteraction between proteins and other molecules, researchers can quickly find binding sites for potential drugs and provide a methodical framework for drug design. In other scenarios, researchers can design more effective vaccine with knowledge of antibody-antigen interactions. This is invaluable in speeding up intial stages of vaccine development with reduced time between pathogen identification and vaccine candidate selection  
 
-This section is optional, and can be omitted entirely if you prefer. If you want to include e-mails, you should either include all authors' e-mails or just the contact author(s)' ones.
 
-Start the e-mails section with the {\tt \textbackslash{}emails} command. After that, write all emails you want to include separated by a comma and a space, following the same order used for the authors (\emph{i.e.}, the first e-mail should correspond to the first author, the second e-mail to the second author and so on).
 
-You may ``contract" consecutive e-mails on the same domain as shown in this example (write the users' part within curly brackets, followed by the domain name). Only e-mails of the exact same domain may be contracted. For instance, contracting ``person@example.com" and ``other@test.example.com" is not allowed because the domains are different.
+
 
 
 % Bibliography/Reference Stuff
